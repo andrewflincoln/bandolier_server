@@ -7,17 +7,14 @@ function getAllQuestions() {
   )
 }
 
-
-
+//this allows duplicate entries -- theoretically, impossible to get there
 function submitAnswer(userId, questionId, answer) {
-
   return (
     knex('users_answers_questions')
-    .insert([{user_id: 9}, {question_id: questionId}, {answer: answer}])  //just getting [] no matter what no errors
+    .insert([{user_id: userId, question_id: questionId, answer: answer}])  
   ).then(response => {
     return response
   })
-  .catch(console.log('it did not work out'))
 }
 
 
@@ -32,8 +29,9 @@ function getUserQuestions(userId) {
   .then(response => {
     return response
   })
-  .catch(() => next)
 }
+
+//function combining gets here to give unanswered questions only?
 
 
 //just Ids and answers
