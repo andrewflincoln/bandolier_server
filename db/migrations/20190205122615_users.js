@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
     table.string('looking_1').notNullable().defaultTo('');
     table.string('looking_2').notNullable().defaultTo('');
     table.string('looking_3').notNullable().defaultTo('');
-    table.integer('digs_user_ids').notNullable().defaultTo(0);
+
   })
 };
 

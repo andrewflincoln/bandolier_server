@@ -41,13 +41,12 @@ function updateUser(req, res, next) {
   .catch(next)
 }
 
-// Doing search on the client side for now
 function searchUsers(req, res, next) {
-  //error?
+  console.log(`genre in controller: ${req.params.genre}`)
+  console.log(`instr in controller: ${req.params.instr}`)
   userModel.searchUsers(req.params.genre, req.params.instr, req.params.heroes, req.params.influences)
-  
   .then(data => {
-    return res.status(201).send(data)
+    return res.status(200).send(data)
   })
   .catch(next)
 }
