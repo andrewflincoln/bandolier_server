@@ -3,23 +3,56 @@ const userModel = require('../models/users')
 function getAll(req, res, next) {
   userModel.getAll()
   .then((response) => {
-    // if(!response.data) return next({status: 400, message: 'Users not found'})
+    if(!response) return next({status: 400, message: 'Users not found'})
     res.send(response)
   })
   .catch(next)
 }
 
 function getOne(req, res, next) {
+  console.log('get one user')
   userModel.getOne(req.params.userId)
   .then(response => {
-    // if(!response.data) return next({status: 400, message: 'User not found'})
+    if(!response) return next({status: 400, message: 'User not found'})
 
     res.send(response)
   })
   .catch(next)
 }
 
+function createUser(req, res, next) {
+  console.log('create user')
+  if(!req.body.username || !req.body.email || !req.body.password|| !req.body.deal) {
+    return next({status: 400, message: 'Could not create user. Maybe you left something out?'})
+  }
+  userModel.createUser(req.body.username, req.body.email, req.body.password, req.body.deal, req.body.genre_1, req.body.genre_2, req.body.genre_3, req.body.bio, req.body.heroes, req.body.influences, req.body.instr_1, req.body.instr_2, req.body.instr_3, req.body.looking_1, req.body.looking_2, req.body.looking_3) 
+  .then(data => {
+    return res.status(201).send(data)
+  })
+  .catch(next)
+}
+
+function updateUser(req, res, next) {
+  console.log('update user')
+  userModel.updateUser(req.body.username, req.body.email, req.body.password, req.body.deal, req.body.genre_1, req.body.genre_2, req.body.genre_3, req.body.bio, req.body.heroes, req.body.influences, req.body.instr_1, req.body.instr_2, req.body.instr_3, req.body.looking_1, req.body.looking_2, req.body.looking_3)
+  .then(data => {
+    return res.status(201).send(data)
+  })
+  .catch(next)
+}
+
+// Doing search on the client side for now
+function searchUsers(req, res, next) {
+  //error?
+  userModel.searchUsers(req.params.genre, req.params.instr, req.params.heroes, req.params.influences)
+  
+  .then(data => {
+    return res.status(201).send(data)
+  })
+  .catch(next)
+}
+
 
 module.exports = {
-  getOne, getAll
+  getOne, getAll, createUser, updateUser, searchUsers
 }

@@ -5,7 +5,10 @@ const userController = require('../controllers/users')
 
 router.get('/', userController.getAll)
 router.get('/:userId', userController.getOne)
-// router.post('/', userController.create)
+
+
+router.post('/', userController.createUser)
+router.put('/:userId', userController.updateUser)
 
 
 module.exports = router
