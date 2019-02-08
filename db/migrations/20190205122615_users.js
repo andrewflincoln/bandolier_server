@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.string('username').notNullable().defaultTo('');
     table.string('email').notNullable().defaultTo('');
+    table.text('imgUrl').notNullable().defaultTo('');
     table.string('hashed_password').notNullable().defaultTo('');
     table.text('deal').notNullable().defaultTo('');
     table.string('genre_1').notNullable().defaultTo('');
