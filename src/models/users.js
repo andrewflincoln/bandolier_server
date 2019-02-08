@@ -2,6 +2,7 @@ const knex = require('../../db/index')
 
 
 function getOne(userId) {
+  console.log('get one model')
   return (
     knex('users')
     .where({'id': userId})
