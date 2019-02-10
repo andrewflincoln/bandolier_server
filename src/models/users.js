@@ -1,4 +1,5 @@
 const knex = require('../../db/index')
+const bcrypt = require('bcrypt')
 
 
 function getOne(userId) {
@@ -15,24 +16,42 @@ function getAll() {
   )
 }
 
+function checkEmail(email){
+  return (
+    knex('users')
+    .where({ 'email': email })
+    .first()
+  )
+}
+
 function createUser(username, email,
   password, deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, influences, instr_1, 
   instr_2, instr_3, looking_1, 
-  looking_2, looking_3
-) {
+  looking_2, looking_3)       {
   //do bcrypt stuff here, search for user
-  console.log(`creating user`)
-  return (
-    knex('users').insert({username, email,
-      deal, genre_1, 
-      genre_2, genre_3, bio, 
-      heroes, influences, instr_1, 
-      instr_2, instr_3, looking_1, 
-      looking_2, looking_3, hashed_password: password} )
-    .returning('*')
-  )
+  return checkEmail(email)
+  .then(data => {
+    if (data) throw {status: 400, message: 'User email already taken.'}
+
+    return bcrypt.hash(password, 10)
+  })
+  .then(password => {
+    return (
+      knex('users').insert({username, email,
+        deal, genre_1, 
+        genre_2, genre_3, bio, 
+        heroes, influences, instr_1, 
+        instr_2, instr_3, looking_1, 
+        looking_2, looking_3, hashed_password: password} )
+      .returning('*')
+    )
+  })
+  .then(function([data]) {
+    delete data.hashed_password
+    return data
+  })
 }
 
 function updateUser(username, email,
@@ -72,6 +91,7 @@ module.exports = {
   getAll,
   createUser,
   updateUser,
-  searchUsers
+  searchUsers,
+  checkEmail
  
 }
