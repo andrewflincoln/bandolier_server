@@ -24,9 +24,9 @@ function getNext(req, res, next) {
   console.log('get next C')
   userModel.getNext(req.params.userId)
   .then(response => {
-    if(!response) return next({status: 400, message: 'Could not get usre.'})
+    if(!response) return next({status: 400, message: 'Could not get user.'})
 
-    res.send(response)
+    res.send(response.rows[0])
   })
   .catch(next)
 }
