@@ -6,6 +6,7 @@ const userController = require('../controllers/users')
 router.get('/search/:genre/:instr', userController.searchUsers)
 
 router.get('/:userId', userController.getOne)
+router.get('/next/:userId', userController.getNext)
 router.get('/', userController.getAll)
 
 router.post('/', userController.createUser)

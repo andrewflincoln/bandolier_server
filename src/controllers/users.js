@@ -20,6 +20,17 @@ function getOne(req, res, next) {
   .catch(next)
 }
 
+function getNext(req, res, next) {
+  console.log('get next C')
+  userModel.getNext(req.params.userId)
+  .then(response => {
+    if(!response) return next({status: 400, message: 'Could not get usre.'})
+
+    res.send(response)
+  })
+  .catch(next)
+}
+
 function createUser(req, res, next) {
   console.log('create user')
   if(!req.body.username || !req.body.email || !req.body.password|| !req.body.deal) {
@@ -53,5 +64,5 @@ function searchUsers(req, res, next) {
 
 
 module.exports = {
-  getOne, getAll, createUser, updateUser, searchUsers
+  getOne, getAll, createUser, updateUser, searchUsers, getNext
 }
