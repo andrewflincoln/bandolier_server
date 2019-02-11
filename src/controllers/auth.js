@@ -15,9 +15,11 @@ const login = (req, res, next) => {
 }
 
 const authenticated = (req, res, next) => {
-  if (!req.headers.authorization)
+  if (!req.headers.authorization) {
+   console.log('no headers.authorization')
+   
     return next({status: 401, message: 'Authentication Failed'})
-
+  }
   const [bearer, token] = req.headers.authorization.split(' ')
   jwt.verify(token, process.env.SECRET, (err, payload) => {
     if (err) return next({status: 401, message: 'Unauthorized'})

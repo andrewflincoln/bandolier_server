@@ -13,6 +13,7 @@ if(process.env.NODE_ENV !== 'production'){ require('dotenv').load() }
 app.use('/login', require ('./routes/auth'))
 app.use('/users', require('./routes/users'))
 app.use('/questions', require('./routes/questions'))
+app.use('/relations', require ('./routes/relations'))
 
 //Default Route
 app.use(function(req, res, next) {

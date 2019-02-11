@@ -11,4 +11,5 @@ router.get('/', userController.getAll)
 router.post('/', userController.createUser)
 router.put('/:userId', userController.updateUser)
 
+
 module.exports = router
