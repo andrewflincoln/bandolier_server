@@ -14,6 +14,25 @@ function getRel(user_1, user_2) {
   })
 }
 
+function getPlaylist(userId) {
+  return (
+    knex.raw(`SELECT users.id, username, deal, bio, img_url,
+    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
+    
+    FROM users LEFT JOIN users_relations ON users.id=users_relations.user2_id
+    
+    WHERE user1_id = ${userId} AND status='played'
+    
+    ORDER BY users_relations.id DESC
+    `)
+//do we want an order here? 
+  )
+}
+
+
+
+
+
 function setRel(user_1, user_2, status) {
   console.log('users: ' + user_1, user_2)
   return (
@@ -28,5 +47,5 @@ function setRel(user_1, user_2, status) {
 
 
 module.exports = {
-  getRel, setRel
+  getRel, setRel, getPlaylist
 }

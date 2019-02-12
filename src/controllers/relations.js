@@ -13,6 +13,17 @@ function getRel(req, res, next) {
   .catch(next)
 }
 
+function getPlaylist(req, res, next) {
+  relModel.getPlaylist(req.params.userId)
+  .then(
+    response => {
+      if (!response)
+        return next({status: 400, message: `Could get playlist.`})
+      res.status(200).send(response)
+  })
+  .catch(next)
+}
+
 function setRel(req, res, next) {
   relModel.setRel(req.body.user_1, req.body.user_2, req.body.status)
   .then(
@@ -25,5 +36,5 @@ function setRel(req, res, next) {
 }
 
 module.exports = {
-  getRel, setRel
+  getRel, setRel, getPlaylist
 }
