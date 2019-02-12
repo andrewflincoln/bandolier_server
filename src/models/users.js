@@ -12,7 +12,8 @@ function getOne(userId) {
 
 function getNext(userId) {
   return (
-    knex.raw(`SELECT *
+    knex.raw(`SELECT users.id, username, deal, bio, img_url,
+    deal, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
     
@@ -24,7 +25,6 @@ function getNext(userId) {
     ORDER BY RANDOM() LIMIT 1;`)
   )
 }
-
 
 
 function getAll() {
