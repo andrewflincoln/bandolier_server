@@ -18,7 +18,7 @@ function getNext(userId) {
     
     WHERE users.id != ${userId} 
     AND NOT EXISTS(SELECT * FROM users_relations WHERE user1_id = ${userId} AND user2_id = users.id
-        OR user1_id = users.id AND user2_id = ${userId})
+        OR user1_id = users.id AND user2_id = ${userId} AND status = 'stopped')
 
   
     ORDER BY RANDOM() LIMIT 1;`)
