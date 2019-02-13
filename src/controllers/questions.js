@@ -10,6 +10,17 @@ function getAllQuestions(req, res, next) {
   .catch(next)
 }
 
+function getNextQuestion(req, res, next) {
+  console.log('get next C')
+  questionsModel.getNextQuestion(req.params.userId)
+  .then(response => {
+    if(!response) return next({status: 400, message: 'Could not get question.'})
+
+    res.send(response.rows[0])//see what this is
+  })
+  .catch(next)
+}
+
 function getUserQuestions(req, res, next) {
   questionsModel.getUserQuestions(req.params.userId)
   .then(response => {
@@ -34,5 +45,5 @@ function submitAnswer(req, res, next) {
 
 
 module.exports = {
-  getAllQuestions, getUserQuestions, submitAnswer
+  getAllQuestions, getUserQuestions, submitAnswer, getNextQuestion
 }
