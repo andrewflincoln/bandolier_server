@@ -25,7 +25,6 @@ function getPlaylist(userId) {
     
     ORDER BY users_relations.id DESC
     `)
-//do we want an order here? 
   )
 }
 
