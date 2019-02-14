@@ -30,8 +30,7 @@ function compAnswers(user1, user2) {
 
     AND user_id=${user1} OR user_id=${user2}`)
   )
-  .then(
-    (response) => {
+  .then(response => {
       const array=response.rows
       let user1 = array.splice(0, array.length/2)
       let user2 = array
@@ -41,9 +40,9 @@ function compAnswers(user1, user2) {
         if (user1[i].answer===user2[i].answer) 
           same++
       }
-      return  (same/user1.length*100).toFixed(0)+`%`
-    }
-  )
+      console.log(same)
+      return (same/user1.length*100).toFixed(0)+`%`
+  })
 }
 
 

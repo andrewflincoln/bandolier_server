@@ -52,6 +52,34 @@ function submitAnswer(req, res, next) {
 }
 
 
+function compAnswers(user1, user2) {
+  return (
+    knex.raw(`SELECT user_id, questions.id, answer
+
+    FROM users_answers_questions LEFT JOIN questions ON questions.id=users_answers_questions.question_id
+
+    WHERE EXISTS(SELECT * FROM users_answers_questions WHERE user_id=${user1} AND question_id=questions.id)
+
+    AND EXISTS (SELECT * FROM users_answers_questions WHERE user_id=${user2} AND question_id=questions.id)
+
+    AND user_id=${user1} OR user_id=${user2}`)
+  )
+  .then(response => {
+      const array=response.rows
+      let user1 = array.splice(0, array.length/2)
+      let user2 = array
+      console.log(user1, user2)
+      let same = 0
+      for (let i = 0; i < user1.length; i++) {
+        if (user1[i].answer===user2[i].answer) 
+          same++
+      }
+      console.log(same)
+      return (same/user1.length*100).toFixed(0)+`%`
+  })
+}
+
+
 
 
 module.exports = {
