@@ -12,8 +12,8 @@ function getOne(userId) {
   )
 }
 
-function getNext(userId) {
-  return (
+function getNext(userId) { //correctly returns next user, but added .match property is "match": { "isFulfilled": false,"isRejected": false }
+  return (                     
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
     
@@ -33,7 +33,7 @@ function getNext(userId) {
     })
 }
 
-function compAnswers(user1, user2) {
+function compAnswers(user1, user2) { //correctly returns percent of in-common questions they answered the same
   return (
     knex.raw(`SELECT user_id, questions.id, answer
 
@@ -49,14 +49,17 @@ function compAnswers(user1, user2) {
       const array=response.rows
       let user1 = array.splice(0, array.length/2)
       let user2 = array
-      console.log(user1, user2)
+    
       let same = 0
       for (let i = 0; i < user1.length; i++) {
         if (user1[i].answer===user2[i].answer) 
           same++
       }
-      console.log(same)
-      return (same/user1.length*100).toFixed(0)+`%`
+      
+      let match = (same/user1.length*100).toFixed(0)+`%`
+      if (match === `NaN%`) match=`TBD%`
+      console.log(`match pct: ${match}`)
+      return match
   })
 }
 
@@ -145,6 +148,7 @@ module.exports = {
   updateUser,
   searchUsers,
   checkEmail,
-  getNext
+  getNext,
+  compAnswers
  
 }

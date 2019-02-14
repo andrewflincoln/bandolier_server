@@ -16,7 +16,7 @@ function getNextQuestion(req, res, next) {
   .then(response => {
     if(!response) return next({status: 400, message: 'Could not get question.'})
 
-    res.send(response.rows[0])//see what this is
+    res.send(response.rows[0])
   })
   .catch(next)
 }
