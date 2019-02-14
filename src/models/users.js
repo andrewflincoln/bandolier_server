@@ -12,7 +12,7 @@ function getOne(userId) {
   )
 }
 
-function getNext(userId) { //correctly returns next user, but added .match property is "match": { "isFulfilled": false,"isRejected": false }
+function getNext(userId) { //Maybe clean up/combine these two. 
   return (                     
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
@@ -25,15 +25,11 @@ function getNext(userId) { //correctly returns next user, but added .match prope
   
     ORDER BY RANDOM() LIMIT 1;`)
   )
-  .then(
-    response => {
-      console.log(JSON.stringify(response))
-      response.rows[0].match = compAnswers(userId, response.rows[0].id)
-      return response
-    })
+  .then( response => {
+      return compAnswers(userId, response.rows[0].id, response.rows[0])
+  })
 }
-
-function compAnswers(user1, user2) { //correctly returns percent of in-common questions they answered the same
+function compAnswers(user1, user2, responseSoFar) {
   return (
     knex.raw(`SELECT user_id, questions.id, answer
 
@@ -59,7 +55,9 @@ function compAnswers(user1, user2) { //correctly returns percent of in-common qu
       let match = (same/user1.length*100).toFixed(0)+`%`
       if (match === `NaN%`) match=`TBD%`
       console.log(`match pct: ${match}`)
-      return match
+      responseSoFar.match = match
+      console.log('responseSoFar: ' + JSON.stringify(responseSoFar))
+      return responseSoFar
   })
 }
 

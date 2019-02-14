@@ -26,7 +26,7 @@ function getNext(req, res, next) {
   .then(response => {
     if(!response) return next({status: 400, message: 'Could not get user.'})
 
-    res.send(response.rows[0])
+    res.send(response) ///may have to adjust here
   })
   .catch(next)
 }
