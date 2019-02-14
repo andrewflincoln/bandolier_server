@@ -21,6 +21,16 @@ function getNextQuestion(req, res, next) {
   .catch(next)
 }
 
+function compAnswers(req, res, next) {
+  questionsModel.compAnswers(req.params.user1, req.params.user2)
+  .then(response => {
+    if(!response) 
+      return next ({status: 400, message: `Could not get answers.`})
+    res.status(200).send(response)
+  }) 
+  .catch(next)
+}
+
 function getUserQuestions(req, res, next) {
   questionsModel.getUserQuestions(req.params.userId)
   .then(response => {
@@ -45,5 +55,5 @@ function submitAnswer(req, res, next) {
 
 
 module.exports = {
-  getAllQuestions, getUserQuestions, submitAnswer, getNextQuestion
+  getAllQuestions, getUserQuestions, submitAnswer, getNextQuestion, compAnswers
 }

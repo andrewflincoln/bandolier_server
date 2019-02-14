@@ -6,6 +6,7 @@ const questionsController = require('../controllers/questions')
 router.get('/', questionsController.getAllQuestions)
 router.get('/:userId', questionsController.getUserQuestions) //all qs a user has answered
 router.get('/next/:userId', questionsController.getNextQuestion)
+router.get('/comp/:user1/:user2', questionsController.compAnswers)
 
 router.post('/', questionsController.submitAnswer)
 
