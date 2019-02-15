@@ -80,7 +80,7 @@ function checkEmail(email){
 function createUser(username, email,
   password, deal, genre_1, 
   genre_2, genre_3, bio, 
-  heroes, influences, instr_1, 
+  heroes, img_url, influences, instr_1, 
   instr_2, instr_3, looking_1, 
   looking_2, looking_3)       {
   //do bcrypt stuff here, search for user
@@ -95,7 +95,7 @@ function createUser(username, email,
       knex('users').insert({username, email,
         deal, genre_1, 
         genre_2, genre_3, bio, 
-        heroes, influences, instr_1, 
+        heroes, img_url, influences, instr_1, 
         instr_2, instr_3, looking_1, 
         looking_2, looking_3, hashed_password: password} )
       .returning('*')
