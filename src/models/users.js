@@ -128,12 +128,14 @@ function updateUser(username, email,
 }
 
 //heroes/influences - add later if appropriate. or delete.
-function searchUsers(genre, instr, heroes, influences) {
-  return  (
-    knex('users')
-    .where({genre_1: genre})
-    .andWhere({instr_1: instr})
-    .andWhere
+function searchUsers(genre_1 = '', instr_1 = '') {
+  return  knex.raw(`SELECT * FROM users 
+  
+  WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
+  
+  AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}');`
+    
+  
   )
 }
 

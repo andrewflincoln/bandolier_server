@@ -53,9 +53,10 @@ function updateUser(req, res, next) {
 }
 
 function searchUsers(req, res, next) {
-  console.log(`genre in controller: ${req.params.genre}`)
-  console.log(`instr in controller: ${req.params.instr}`)
-  userModel.searchUsers(req.params.genre, req.params.instr, req.params.heroes, req.params.influences)
+  console.log(`genre in controller: ${req.body.genre_1}`)
+  console.log(`instr in controller: ${req.body.instr_1}`)
+  userModel.searchUsers(req.body.genre_1, req.body.instr_1)
+    // req.body.heroes, req.params.influences)
   .then(data => {
     return res.status(200).send(data)
   })
