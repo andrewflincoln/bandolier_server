@@ -133,6 +133,7 @@ function searchUsers(genre, instr, heroes, influences) {
     knex('users')
     .where({genre_1: genre})
     .andWhere({instr_1: instr})
+    .andWhere
   )
 }
 
