@@ -39,6 +39,8 @@ function compAnswers(user1, user2) {
       for (let i = 0; i < user1.length; i++) {
         if (user1[i].answer===user2[i].answer) 
           same++
+        if (Math.abs(user1[i].answer - user2[i].answer) === 1)
+          same+= 0.5 
       }
       console.log(same)
       return (same/user1.length*100).toFixed(0)+`%`
@@ -72,21 +74,6 @@ function getUserQuestions(userId) {
   })
 }
 
-//function combining gets here to give unanswered questions only?
-
-
-//just Ids and answers
-// function getUserQuestions(userId) {
-//   return (
-//     knex('questions')
-//     .select('question_id','user_id', 'answer')
-//     .join('users_answers_questions', 'users_answers_questions.question_id', 'questions.id')
-
-//   )
-//   .then(response => {
-//     return response
-//   })
-// }
 
 
 module.exports = {

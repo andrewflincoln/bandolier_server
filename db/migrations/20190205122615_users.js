@@ -16,9 +16,7 @@ exports.up = function(knex, Promise) {
     table.string('instr_1').notNullable().defaultTo('');
     table.string('instr_2').notNullable().defaultTo('');
     table.string('instr_3').notNullable().defaultTo('');
-    table.string('looking_1').notNullable().defaultTo('');
-    table.string('looking_2').notNullable().defaultTo('');
-    table.string('looking_3').notNullable().defaultTo('');
+  
   })
 };
 

@@ -4,7 +4,7 @@ const questionsModel = require('./questions')
 
 
 
-function getOne(userId) {
+function getOne(userId) { //not in use
   console.log('get one model')
   return (
     knex('users')
@@ -63,7 +63,7 @@ function compAnswers(user1, user2, responseSoFar) {
 
 
 
-function getAll() {
+function getAll() { //not in use
   return (
     knex('users')
   )
@@ -107,7 +107,7 @@ function createUser(username, email,
   })
 }
 
-function updateUser(username, email,
+function updateUser(username, email,//this /creates/ a new user  //needs img
   password, deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, influences, instr_1, 
@@ -115,7 +115,7 @@ function updateUser(username, email,
   looking_2, looking_3
 ) {
 
-  console.log(`updating user`)
+  console.log(`updating user`) 
   return (
     knex('users').insert({username, email,
       deal, genre_1, 
@@ -128,20 +128,24 @@ function updateUser(username, email,
 }
 
 
-function searchUsers(genre_1, instr_1, heroes, influences) { // '' default leaves you off if all slots full
-  return  knex.raw(`SELECT * FROM users 
-  
-  WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
-  
-  AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}')
-  
-  AND upper(heroes) LIKE upper('%${heroes}%')
-  
-  AND upper(influences) LIKE upper('%${influences}%');` 
- 
-    
-  
-  )
+function searchUsers(genre_1='', instr_1='', heroes='', influences='') { // '' default leaves you off if all slots full?
+  if (instr_1 === '') {
+    return  knex.raw(`SELECT * FROM users 
+    WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
+    AND upper(heroes) LIKE upper('%${heroes}%')
+    AND upper(influences) LIKE upper('%${influences}%');` )
+  } else if (genre_1 === '') {
+    return  knex.raw(`SELECT * FROM users 
+    WHERE (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') 
+    AND upper(heroes) LIKE upper('%${heroes}%')
+    AND upper(influences) LIKE upper('%${influences}%');` )
+  }  else {
+    return  knex.raw(`SELECT * FROM users 
+    WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
+    AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') /* he has no "" here, so not included  */
+    AND upper(heroes) LIKE upper('%${heroes}%')
+    AND upper(influences) LIKE upper('%${influences}%');` )
+  }
 }
 
 
