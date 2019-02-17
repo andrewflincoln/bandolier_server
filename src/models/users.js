@@ -50,6 +50,9 @@ function compAnswers(user1, user2, responseSoFar) {
       for (let i = 0; i < user1.length; i++) {
         if (user1[i].answer===user2[i].answer) 
           same++
+        else if (user1[i].answer - user2[i].answer == Math.abs(1)) 
+          same += 0.5
+        
       }
       
       let match = (same/user1.length*100).toFixed(0)+`%`
@@ -128,8 +131,13 @@ function updateUser(username, email,//this /creates/ a new user  //needs img
 }
 
 
-function searchUsers(genre_1='', instr_1='', heroes='', influences='') { // '' default leaves you off if all slots full?
-  if (instr_1 === '') {
+function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') { // '' default leaves you off if all slots full?
+  if (genre_1 === '' && instr_1 === '') {
+    return  knex.raw(`SELECT * FROM users 
+    WHERE upper(heroes) LIKE upper('%${heroes}%')
+    AND upper(influences) LIKE upper('%${influences}%')
+    AND NOT (users.id = 2);` )
+  }  else if (instr_1 === '') {
     return  knex.raw(`SELECT * FROM users 
     WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
     AND upper(heroes) LIKE upper('%${heroes}%')
@@ -139,13 +147,17 @@ function searchUsers(genre_1='', instr_1='', heroes='', influences='') { // '' d
     WHERE (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') 
     AND upper(heroes) LIKE upper('%${heroes}%')
     AND upper(influences) LIKE upper('%${influences}%');` )
-  }  else {
+  }  
+  else {
     return  knex.raw(`SELECT * FROM users 
     WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
     AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') /* he has no "" here, so not included  */
     AND upper(heroes) LIKE upper('%${heroes}%')
     AND upper(influences) LIKE upper('%${influences}%');` )
   }
+  
+
+
 }
 
 
