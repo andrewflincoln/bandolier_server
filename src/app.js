@@ -14,6 +14,7 @@ app.use('/login', require ('./routes/auth'))
 app.use('/users', require('./routes/users'))
 app.use('/questions', require('./routes/questions'))
 app.use('/relations', require ('./routes/relations'))
+app.use('/messages', require ('./routes/messages'))
 
 //Default Route
 app.use(function(req, res, next) {
