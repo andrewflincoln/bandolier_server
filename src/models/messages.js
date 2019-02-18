@@ -20,7 +20,7 @@ function getConvos(userId) { //sender vs receiver   //need to get users.id acros
   )
   .then(response => {
     return response.rows.sort(function (a, b) { //probably possible in SQL, except it is impossible.
-      return a.key - b.key;
+      return b.key - a.key;
     });
   })
   //attach latest message
