@@ -29,9 +29,6 @@ function getPlaylist(userId) {
 }
 
 
-
-
-
 function setRel(user_1, user_2, status) {
   console.log('users: ' + user_1, user_2)
   return (
@@ -43,8 +40,20 @@ function setRel(user_1, user_2, status) {
   })
 }
 
+function removeRel(user_1, user_2) {
+  console.log('users: ' + user_1, user_2)
+  return (
+    knex.raw(
+      `DELETE FROM users_relations
+      
+      WHERE user1_id = ${user_1} AND user2_id = ${user_2}
+      ;`)
+
+    )
+}
+
 
 
 module.exports = {
-  getRel, setRel, getPlaylist
+  getRel, setRel, getPlaylist, removeRel
 }

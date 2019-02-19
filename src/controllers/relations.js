@@ -18,7 +18,7 @@ function getPlaylist(req, res, next) {
   .then(
     response => {
       if (!response)
-        return next({status: 400, message: `Could get playlist.`})
+        return next({status: 400, message: `Could not get playlist.`})
       res.status(200).send(response)
   })
   .catch(next)
@@ -29,12 +29,22 @@ function setRel(req, res, next) {
   .then(
     response => {
       if (!response)
-        return next ({status: 400, message: `Could not set status.`})
+        return next ({status: 400, message: `Could not alter relation.`})
       res.status(201).send(response)
+    })
+    .catch(next)
+}
+function removeRel(req, res, next) {
+  relModel.removeRel(req.body.user_1, req.body.user_2)
+  .then(
+    response => {
+      if (!response)
+        return next ({status: 400, message: `Could not alter relation.`})
+      res.status(204).send(response)
     })
     .catch(next)
 }
 
 module.exports = {
-  getRel, setRel, getPlaylist
+  getRel, setRel, getPlaylist, removeRel
 }
