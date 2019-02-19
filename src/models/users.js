@@ -110,22 +110,21 @@ function createUser(username, email,
   })
 }
 
-function updateUser(username, email,//this /creates/ a new user  //needs img
-  password, deal, genre_1, 
+function updateUser(id, username, email, img_url,//this /creates/ a new user  //needs img
+  deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, influences, instr_1, 
-  instr_2, instr_3, looking_1, 
-  looking_2, looking_3
+  instr_2, instr_3
 ) {
 
   console.log(`updating user`) 
   return (
-    knex('users').insert({username, email,
-      deal, genre_1, 
+    knex('users').update({username, email, img_url,
+      deal,  genre_1, 
       genre_2, genre_3, bio, 
       heroes, influences, instr_1, 
-      instr_2, instr_3, looking_1, 
-      looking_2, looking_3, hashed_password: password} )
+      instr_2, instr_3} )
+    .where({'users.id' : id})
     .returning('*')
   )
 }

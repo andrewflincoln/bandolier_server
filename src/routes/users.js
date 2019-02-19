@@ -8,7 +8,7 @@ router.get('/next/:userId', userController.getNext)
 router.get('/', userController.getAll)
 
 router.post('/search', userController.searchUsers)
-router.put('/:userId', userController.updateUser)
+router.put('/', userController.updateUser)
 router.post('/', userController.createUser)
 
 
