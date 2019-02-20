@@ -7,17 +7,18 @@ const questionsModel = require('./questions')
 function getOne(userId) { //not in use
   console.log('get one model')
   return (
-    knex('users')
-    .where({'id': userId})
+    knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
+    .where({'users.id': userId})
   )
 }
 
 function getNext(userId) { //Maybe clean up/combine these two. 
   return (                     
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
-    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
+    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
+      LEFT JOIN tracks ON tracks.user_id = users.id
     
     WHERE users.id != ${userId} 
     AND NOT EXISTS(SELECT * FROM users_relations WHERE user1_id = ${userId} AND user2_id = users.id
