@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
         {id: 12, user_id: 12, title: 'Run With The Wolves', artist_name: 'The Prodigy', user_contr: 'this drummer just played a bunch of drum stuff and sent it to me. turned out pretty wicked i guess', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/prodigy_runwiththewolves.mp3`},
         {id: 13, user_id: 13, title: 'Salt For Your Wounds', artist_name: 'AFI', user_contr: 'man, we used to be so good!', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/afi_saltforyourwounds.mp3`},
         {id: 14, user_id: 14, title: 'My Poor Brain', artist_name: 'Autolux', user_contr: 'Can you believe that maniac did this over? it was totally adequte!', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/foo_fighters_mypoorbrain.mp3`},
-        {id: 15, user_id: 14, title: 'Precipitate', artist_name: 'Interpol', user_contr: `Little band I was playing with, don't think it's gonna pan out`, url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/interpol_precipitate.mp3`},
+        {id: 15, user_id: 15, title: 'Precipitate', artist_name: 'Interpol', user_contr: `Little band I was playing with, don't think it's gonna pan out`, url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/interpol_precipitate.mp3`},
 
       ]);
     });
