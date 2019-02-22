@@ -15,7 +15,7 @@ function getOne(userId) { //not in use
 function getNext(userId) { //Maybe clean up/combine these two. 
   return (                     
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
-    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url
+    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
       LEFT JOIN tracks ON tracks.user_id = users.id

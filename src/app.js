@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
-// const io = require('socket.io')(http); //
+const io = require('socket.io')()
 
 
 app.use(cors())
@@ -37,11 +37,19 @@ app.use(function(err, req, res, next) {
 
 })
 
-
+ //
 //Socket stuff
-// io.on('connection', function(socket) {
-//   console.log('BAM you got SOCKETED!!')
-// })
+io.on('connection', (client) =>  {
+  
+
+  client.on('subscribetoTimer', (interval) => {
+    console.log('BAM you got SOCKETED!!', interval)
+    setInterval( () => {
+      client.emit('timer', new Date())
+
+    }, interval)
+  })
+})
 
 
 
