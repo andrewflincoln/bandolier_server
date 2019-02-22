@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
-const io = require('socket.io')(http); //
+// const io = require('socket.io')(http); //
 
 
 app.use(cors())
@@ -39,9 +39,9 @@ app.use(function(err, req, res, next) {
 
 
 //Socket stuff
-io.on('connection', function(socket) {
-  console.log('BAM you got SOCKETED!!', socket.id)
-})
+// io.on('connection', function(socket) {
+//   console.log('BAM you got SOCKETED!!')
+// })
 
 
 
