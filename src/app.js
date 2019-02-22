@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
+const io = require('socket.io')(http); //
+
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -35,9 +37,18 @@ app.use(function(err, req, res, next) {
 
 })
 
+
+//Socket stuff
+io.on('connection', function(socket) {
+  console.log('BAM you got SOCKETED!!', socket.id)
+})
+
+
+
 //Start Server
 const port = process.env.PORT || 3000
 app.listen(port, function() {
   console.log(`Bandolier is here on ${port} for your drivetime commute.`)
 })
+
 
