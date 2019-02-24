@@ -153,10 +153,11 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
     LEFT JOIN tracks ON tracks.user_id = users.id
-    
-    WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
+
+    WHERE ( upper(genre_1) LIKE upper('%${genre_1}%') OR upper(genre_2) LIKE upper('%${genre_1}%') OR upper(genre_3) LIKE upper('%${genre_1}%') )
     AND upper(heroes) LIKE upper('%${heroes}%')
     AND upper(influences) LIKE upper('%${influences}%')
+
     AND NOT (users.id = ${userId});` )
 
   } else if (genre_1 === '') {
@@ -165,9 +166,12 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
     LEFT JOIN tracks ON tracks.user_id = users.id
-    WHERE (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') 
+
+    WHERE (upper(instr_1) LIKE upper('%${instr_1}%') OR upper(instr_2) LIKE upper('%${instr_1}%') OR upper(instr_3) LIKE upper('%${instr_1}%') )
+
     AND upper(heroes) LIKE upper('%${heroes}%')
     AND upper(influences) LIKE upper('%${influences}%')
+
     AND NOT (users.id = ${userId});` )
   }  
   else {
@@ -176,10 +180,11 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
     LEFT JOIN tracks ON tracks.user_id = users.id
-    WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
-    AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') /* he has no "" here, so not included  */
+    WHERE ( upper(genre_1) LIKE upper('%${genre_1}%') OR upper(genre_2) LIKE upper('%${genre_1}%') OR upper(genre_3) LIKE upper('%${genre_1}%') )
+    AND ( upper(instr_1) LIKE upper('%${instr_1}%') OR upper(instr_2) LIKE upper('%${instr_1}%') OR upper(instr_3) LIKE upper('%${instr_1}%') )
     AND upper(heroes) LIKE upper('%${heroes}%')
     AND upper(influences) LIKE upper('%${influences}%')
+
     AND NOT (users.id = ${userId});` )
   }
   
