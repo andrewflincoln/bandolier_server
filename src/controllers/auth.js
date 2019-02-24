@@ -9,14 +9,15 @@ const login = (req, res, next) => {
   authModel.login(req.body.email, req.body.password)
     .then(user => {
       const token = jwt.sign({id: user.id}, process.env.SECRET)
-      return res.status(200).send({token, user}) //add user
+      return res.status(200).send({token, user}) 
     })
     .catch(next)
 }
 
 const authenticated = (req, res, next) => {
+  console.log(JSON.stringify(req))
   if (!req.headers.authorization) {
-   console.log('no headers.authorization')
+   console.log('headers: ' + req.headers.authorization)
    
     return next({status: 401, message: 'Authentication Failed'})
   }
