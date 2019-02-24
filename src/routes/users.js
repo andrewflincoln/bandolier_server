@@ -15,7 +15,7 @@ router.post('/', userController.createUser)
 
 
 
-router.get('/:userId', userController.getOne)
+router.get('/:userId/:gettingId', userController.getOne)
 // router.use('/search', authController.authenticated, authController.isSelf )
 
 

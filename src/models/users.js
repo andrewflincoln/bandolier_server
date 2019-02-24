@@ -4,11 +4,11 @@ const questionsModel = require('./questions')
 
 
 
-function getOne(userId) { 
+function getOne(userId, gettingId) { 
   console.log('get one model')
   return (
     knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
-    .where({'users.id': userId})
+    .where({'users.id': gettingId})
   )
   .then(response => {
       return compAnswers(userId, response[0].id, response[0])

@@ -11,7 +11,7 @@ function getAll(req, res, next) {
 
 function getOne(req, res, next) {
   console.log('get one user')
-  userModel.getOne(req.params.userId)
+  userModel.getOne(req.params.userId, req.params.gettingId)
   .then(response => {
     if(!response) return next({status: 400, message: 'User not found'})
 
