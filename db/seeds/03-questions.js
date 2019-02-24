@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         {id: 6, question_text: `Who's the best?`, option_1: `Metallica`, option_2: `Megadeth`, option_3: `Slayer`, option_4: `None`},
         {id: 7, question_text: `Who's the best?`, option_1: `Yeah Yeah Yeahs`, option_2: `The Strokes`, option_3: `Interpol`, option_4: `None`},
         {id: 8, question_text: `Who's the best?`, option_1: `Nirvana`, option_2: `Pearl Jam`, option_3: `Soundgarden`, option_4: `None`},
-        {id: 9, question_text: `If your band has a plural name, do you want "The..." to be part of the name?`, option_1: `Yes`, option_2: `No`, option_3: `Depends`, option_4: `I don't think about such things.`},
+        {id: 9, question_text: `If your band has a plural name, do you want "The..." to be part of the name?`, option_1: `Yes`, option_2: `No`, option_3: `Depends`, option_4: `What?`},
         {id: 10, question_text: `Are substances part of your creative process?`, option_1: `Essential.`, option_2: `Sometimes.`, option_3: `Not really, but they're around.`, option_4: `They're not around.`},
 
       ]).then(() => {

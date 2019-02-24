@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
 const questionsController = require('../controllers/questions')
-// const authController = require('../controllers/auth')
+const authController = require('../controllers/auth')
+
+
+router.use('/', authController.authenticated, authController.isSelf)
+
 
 router.get('/', questionsController.getAllQuestions)
 router.get('/:userId', questionsController.getUserQuestions) //all qs a user has answered

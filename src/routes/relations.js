@@ -3,6 +3,7 @@ const router = express.Router({mergeParams: true})
 const relController = require('../controllers/relations')
 const authController = require('../controllers/auth')
 
+router.use('/', authController.authenticated, authController.isSelf)
 
 router.get('/playlist/:userId', relController.getPlaylist)
 router.get('/getone/:user_1/:user_2', relController.getRel)
