@@ -8,7 +8,7 @@ const authController = require('../controllers/auth')
 
 router.get('/next/:userId', userController.getNext)
 router.get('/', userController.getAll)
-router.use('/search', authController.authenticated, authController.isSelf )
+
 router.post('/search', userController.searchUsers)
 router.put('/', userController.updateUser)
 router.post('/', userController.createUser)
@@ -16,7 +16,7 @@ router.post('/', userController.createUser)
 
 
 router.get('/:userId', userController.getOne)
-
+// router.use('/search', authController.authenticated, authController.isSelf )
 
 
 
