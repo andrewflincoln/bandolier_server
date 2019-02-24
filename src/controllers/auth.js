@@ -4,12 +4,12 @@ const jwt = require('jsonwebtoken')
 const login = (req, res, next) => {
   console.log('login controller')
   if (!req.body.email || !req.body.password)
-    return next({status: 400, message: 'Bad Request'})
+    return next({status: 400, message: 'Bad Request - 1'})
 
   authModel.login(req.body.email, req.body.password)
     .then(user => {
       const token = jwt.sign({id: user.id}, process.env.SECRET)
-      return res.status(200).send({token})
+      return res.status(200).send({token, user}) //add user
     })
     .catch(next)
 }

@@ -73,7 +73,7 @@ function getAll() { //not in use
   )
 }
 
-function checkEmail(email){
+function getByEmail(email){
   return (
     knex('users')
     .where({ 'email': email })
@@ -169,7 +169,7 @@ module.exports = {
   createUser,
   updateUser,
   searchUsers,
-  checkEmail,
+  getByEmail,
   getNext,
   compAnswers
  

@@ -37,19 +37,6 @@ app.use(function(err, req, res, next) {
 
 })
 
- //
-//Socket stuff
-io.on('connection', (client) =>  {
-  
-
-  client.on('subscribetoTimer', (interval) => {
-    console.log('BAM you got SOCKETED!!', interval)
-    setInterval( () => {
-      client.emit('timer', new Date())
-
-    }, interval)
-  })
-})
 
 
 
