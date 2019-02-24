@@ -4,12 +4,15 @@ const questionsModel = require('./questions')
 
 
 
-function getOne(userId) { //not in use
+function getOne(userId) { 
   console.log('get one model')
   return (
     knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
     .where({'users.id': userId})
   )
+  .then(response => {
+      return compAnswers(userId, response[0].id, response[0])
+  })
 }
 
 function getNext(userId) { //Maybe clean up/combine these two. 

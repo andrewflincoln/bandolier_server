@@ -17,9 +17,10 @@ function getRel(user_1, user_2) {
 function getPlaylist(userId) {
   return (
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
-    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3
+    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
     
-    FROM users LEFT JOIN users_relations ON users.id=users_relations.user2_id
+    FROM users LEFT JOIN users_relations ON users.id=users_relations.user2_id 
+    LEFT JOIN tracks ON tracks.user_id = users.id
     
     WHERE user1_id = ${userId} AND status='played'
     
