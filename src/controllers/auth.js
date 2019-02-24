@@ -15,9 +15,9 @@ const login = (req, res, next) => {
 }
 
 const authenticated = (req, res, next) => {
-  console.log(JSON.stringify(req))
+
   if (!req.headers.authorization) {
-   console.log('headers: ' + req.headers.authorization)
+   console.log('headers: ' + JSON.stringify(req.headers))
    
     return next({status: 401, message: 'Authentication Failed'})
   }

@@ -10,15 +10,10 @@ const authController = require('../controllers/auth')
 
 router.get('/', questionsController.getAllQuestions)
 router.get('/:userId', questionsController.getUserQuestions) //all qs a user has answered
-router.use('/next/:userId', authController.authenticated, authController.isSelf )
 router.get('/next/:userId', questionsController.getNextQuestion)
 router.get('/comp/:user1/:user2', questionsController.compAnswers)
 
 router.post('/', questionsController.submitAnswer)
-
-
-// router.post('/', questionsController.submitAnswer)
-
 
 
 module.exports = router
