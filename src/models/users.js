@@ -142,10 +142,11 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     
     FROM users LEFT JOIN users_relations ON users.id=users_relations.user1_id
     LEFT JOIN tracks ON tracks.user_id = users.id
-    
+
     WHERE upper(heroes) LIKE upper('%${heroes}%')
-    AND upper(influences) LIKE upper('%${influences}%')
-    AND NOT (users.id = 2);` )
+    AND upper(influences) LIKE upper('%${influences}%') 
+    AND NOT (users.id = ${userId});` )
+
   }  else if (instr_1 === '') {
     return  knex.raw(`SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
@@ -155,7 +156,9 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     
     WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
     AND upper(heroes) LIKE upper('%${heroes}%')
-    AND upper(influences) LIKE upper('%${influences}%');` )
+    AND upper(influences) LIKE upper('%${influences}%')
+    AND NOT (users.id = ${userId});` )
+
   } else if (genre_1 === '') {
     return  knex.raw(`SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
@@ -164,7 +167,8 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     LEFT JOIN tracks ON tracks.user_id = users.id
     WHERE (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') 
     AND upper(heroes) LIKE upper('%${heroes}%')
-    AND upper(influences) LIKE upper('%${influences}%');` )
+    AND upper(influences) LIKE upper('%${influences}%')
+    AND NOT (users.id = ${userId});` )
   }  
   else {
     return  knex.raw(`SELECT users.id, username, deal, bio, img_url,
@@ -175,7 +179,8 @@ function searchUsers(userId, genre_1='', instr_1='', heroes='', influences='') {
     WHERE (genre_1 ='${genre_1}' OR genre_2 = '${genre_1}' OR genre_3 = '${genre_1}')
     AND (instr_1 = '${instr_1}' OR instr_2 = '${instr_1}' OR instr_3 = '${instr_1}') /* he has no "" here, so not included  */
     AND upper(heroes) LIKE upper('%${heroes}%')
-    AND upper(influences) LIKE upper('%${influences}%');` )
+    AND upper(influences) LIKE upper('%${influences}%')
+    AND NOT (users.id = ${userId});` )
   }
   
 
