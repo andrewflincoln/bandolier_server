@@ -69,7 +69,7 @@ function compAnswers(user1, user2, responseSoFar) {
       }
       let match = (same/user1.length*100).toFixed(0)+`%`
       if (match === `NaN%`) match=`TBD%`
-      responseSoFar.match = match
+      responseSoFar.rows[0].match = match
       console.log('responseSoFar: ' + JSON.stringify(responseSoFar))
       return responseSoFar
   })
