@@ -22,7 +22,7 @@ function getOne(userId, gettingId) {
   })
 }
 
-function getNext(userId) { //Maybe clean up/combine these two. 
+function getNext(userId, recents) { //Maybe clean up/combine these two. 
   return (                     
     knex.raw(`SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
@@ -33,6 +33,8 @@ function getNext(userId) { //Maybe clean up/combine these two.
     WHERE users.id != ${userId} 
     AND NOT EXISTS(SELECT * FROM users_relations WHERE user1_id = ${userId} AND user2_id = users.id
         OR user1_id = users.id AND user2_id = ${userId} AND status = 'stopped')
+
+    AND users.id NOT IN (${recents.map(num => num = `'` + num + `'` ).join() })
   
     ORDER BY RANDOM() LIMIT 1;`)
   )
@@ -67,7 +69,6 @@ function compAnswers(user1, user2, responseSoFar) {
       }
       let match = (same/user1.length*100).toFixed(0)+`%`
       if (match === `NaN%`) match=`TBD%`
-      console.log(`match pct: ${match}`)
       responseSoFar.match = match
       console.log('responseSoFar: ' + JSON.stringify(responseSoFar))
       return responseSoFar

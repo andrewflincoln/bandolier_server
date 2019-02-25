@@ -22,10 +22,11 @@ function getOne(req, res, next) {
 
 function getNext(req, res, next) {
   console.log('get next C')
-  userModel.getNext(req.params.userId)
+  userModel.getNext(req.body.userId, req.body.recents)
+  // console.log(req.body.recents)
   .then(response => {
     if(!response) return next({status: 400, message: 'Could not get user.'})
-
+    console.log('response ', response)
     res.send(response) ///may have to adjust here
   })
   .catch(next)
