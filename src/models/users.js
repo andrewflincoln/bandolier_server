@@ -6,12 +6,19 @@ const questionsModel = require('./questions')
 
 function getOne(userId, gettingId) { 
   console.log('get one model')
-  return (
-    knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
-    .where({'users.id': gettingId})
-  )
-  .then(response => {
-      return compAnswers(userId, response[0].id, response[0])
+  // return (
+  //   knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
+  //   .where({'users.id': gettingId})
+  // )
+  return (knex.raw(
+    `SELECT users.id, username, deal, bio, img_url,
+    deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
+
+    FROM users LEFT JOIN tracks ON tracks.user_id = users.id
+
+    WHERE users.id = ${gettingId};`) )
+    .then(response => {
+      return compAnswers(userId, gettingId, response) //did this mess anything up? 
   })
 }
 
@@ -88,10 +95,9 @@ function createUser(username, email,
   password, deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, img_url, influences, instr_1, 
-  instr_2, instr_3, looking_1, 
-  looking_2, looking_3)       {
+  instr_2, instr_3)       {
   //do bcrypt stuff here, search for user
-  return checkEmail(email)
+  return getByEmail(email)
   .then(data => {
     if (data) throw {status: 400, message: 'User email already taken.'}
 
@@ -103,8 +109,7 @@ function createUser(username, email,
         deal, genre_1, 
         genre_2, genre_3, bio, 
         heroes, img_url, influences, instr_1, 
-        instr_2, instr_3, looking_1, 
-        looking_2, looking_3, hashed_password: password} )
+        instr_2, instr_3, hashed_password: password} )
       .returning('*')
     )
   })
@@ -114,7 +119,7 @@ function createUser(username, email,
   })
 }
 
-function updateUser(id, username, email, img_url,//this /creates/ a new user  //needs img
+function updateUser(id, username, email, img_url,
   deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, influences, instr_1, 

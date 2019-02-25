@@ -36,7 +36,10 @@ function createUser(req, res, next) {
   if(!req.body.username || !req.body.email || !req.body.password|| !req.body.deal) {
     return next({status: 400, message: 'Could not create user. Maybe you left something out?'})
   }
-  userModel.createUser(req.body.username, req.body.email, req.body.password, req.body.deal, req.body.genre_1, req.body.genre_2, req.body.genre_3, req.body.bio, req.body.heroes, req.body.influences, req.body.instr_1, req.body.instr_2, req.body.instr_3, req.body.looking_1, req.body.looking_2, req.body.looking_3) 
+  userModel.createUser(req.body.username, req.body.email, req.body.password, 
+    req.body.deal, req.body.genre_1, req.body.genre_2, req.body.genre_3, 
+    req.body.bio, req.body.heroes, req.body.img_url, req.body.influences, req.body.instr_1, req.body.instr_2, 
+    req.body.instr_3) 
   .then(data => {
     return res.status(201).send(data)
   })
@@ -45,7 +48,9 @@ function createUser(req, res, next) {
 
 function updateUser(req, res, next) {
   console.log('update user')
-  userModel.updateUser(req.body.id, req.body.username, req.body.email, req.body.img_url, req.body.deal, req.body.genre_1, req.body.genre_2, req.body.genre_3, req.body.bio, req.body.heroes, req.body.influences, req.body.instr_1, req.body.instr_2, req.body.instr_3)
+  userModel.updateUser(req.body.id, req.body.username, req.body.email, req.body.img_url, req.body.deal, 
+    req.body.genre_1, req.body.genre_2, req.body.genre_3, 
+    req.body.bio, req.body.heroes, req.body.img_url, req.body.influences, req.body.instr_1, req.body.instr_2, req.body.instr_3)
   .then(data => {
     return res.status(201).send(data)
   })
