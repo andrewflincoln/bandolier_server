@@ -65,7 +65,6 @@ function compAnswers(user1, user2, responseSoFar) {
           same += 0.5
         
       }
-      
       let match = (same/user1.length*100).toFixed(0)+`%`
       if (match === `NaN%`) match=`TBD%`
       console.log(`match pct: ${match}`)
@@ -119,7 +118,7 @@ function createUser(username, email,
   })
 }
 
-function updateUser(id, username, email, 
+function updateUser(id,
   deal, genre_1, 
   genre_2, genre_3, bio, 
   heroes, img_url, influences, instr_1, 
@@ -128,10 +127,10 @@ function updateUser(id, username, email,
 
   console.log(`updating user`) 
   return (
-    knex('users').update({username, email, img_url,
+    knex('users').update({id, deal,
       deal,  genre_1, 
       genre_2, genre_3, bio, 
-      heroes, influences, instr_1, 
+      heroes, img_url, influences, instr_1, 
       instr_2, instr_3} )
     .where({'users.id' : id})
     .returning('*')

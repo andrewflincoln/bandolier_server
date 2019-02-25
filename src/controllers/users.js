@@ -48,7 +48,7 @@ function createUser(req, res, next) {
 
 function updateUser(req, res, next) {
   console.log('update user')
-  userModel.updateUser(req.body.id, req.body.username, req.body.email, req.body.deal, 
+  userModel.updateUser(req.body.id, req.body.deal, 
     req.body.genre_1, req.body.genre_2, req.body.genre_3, 
     req.body.bio, req.body.heroes, req.body.img_url, req.body.influences, 
     req.body.instr_1, req.body.instr_2, req.body.instr_3)
