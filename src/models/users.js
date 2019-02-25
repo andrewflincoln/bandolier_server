@@ -18,7 +18,7 @@ function getOne(userId, gettingId) {
 
     WHERE users.id = ${gettingId};`) )
     .then(response => {
-      return compAnswers(userId, gettingId, response) //did this mess anything up? 
+      return compAnswers(userId, gettingId, response.rows[0]) //did this mess anything up? 
   })
 }
 
