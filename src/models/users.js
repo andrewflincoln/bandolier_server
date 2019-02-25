@@ -119,10 +119,10 @@ function createUser(username, email,
   })
 }
 
-function updateUser(id, username, email, img_url,
+function updateUser(id, username, email, 
   deal, genre_1, 
   genre_2, genre_3, bio, 
-  heroes, influences, instr_1, 
+  heroes, img_url, influences, instr_1, 
   instr_2, instr_3
 ) {
 
