@@ -53,6 +53,55 @@ exports.seed = function(knex, Promise) {
         {id: 32, user_id: 11, question_id: 2, answer:3},
         {id: 33, user_id: 11, question_id: 3, answer:4},
 
+        {id: 34, user_id: 12, question_id: 1, answer:3},
+        {id: 35, user_id: 12, question_id: 2, answer:2},
+        {id: 36, user_id: 12, question_id: 3, answer:3},
+
+     
+        {id: 37, user_id: 13, question_id: 3, answer:4},
+
+        {id: 38, user_id: 14, question_id: 1, answer:2},
+        {id: 39, user_id: 14, question_id: 2, answer:3},
+        {id: 40, user_id: 14, question_id: 3, answer:2},
+
+        {id: 41, user_id: 15, question_id: 1, answer:1},
+        {id: 42, user_id: 15, question_id: 2, answer:1},
+        {id: 43, user_id: 15, question_id: 3, answer:3},
+
+        {id: 44, user_id: 13, question_id: 1, answer:2},
+        {id: 45, user_id: 13, question_id: 2, answer:1},
+
+        {id: 46, user_id: 1, question_id: 4, answer:2},
+        {id: 47, user_id: 1, question_id: 5, answer:1},
+        {id: 48, user_id: 1, question_id: 6, answer:4},
+
+        {id: 49, user_id: 2, question_id: 4, answer:3},
+        {id: 50, user_id: 2, question_id: 5, answer:1},
+        {id: 51, user_id: 2, question_id: 6, answer:2},
+
+        {id: 52, user_id: 3, question_id: 4, answer:1},
+        {id: 53, user_id: 3, question_id: 5, answer:4},
+        {id: 54, user_id: 3, question_id: 6, answer:1},
+
+        {id: 55, user_id: 4, question_id: 4, answer:2},
+        {id: 56, user_id: 4, question_id: 5, answer:1},
+        {id: 57, user_id: 4, question_id: 6, answer:4},
+
+        {id: 58, user_id: 5, question_id: 4, answer:4},
+        {id: 59, user_id: 5, question_id: 5, answer:3},
+        {id: 60, user_id: 5, question_id: 6, answer:2},
+
+        {id: 61, user_id: 6, question_id: 4, answer:2},
+        {id: 62, user_id: 6, question_id: 5, answer:1},
+        {id: 63, user_id: 6, question_id: 6, answer:3},
+
+        {id: 64, user_id: 7, question_id: 4, answer:3},
+        {id: 65, user_id: 7, question_id: 5, answer:2},
+        {id: 66, user_id: 7, question_id: 6, answer:4},
+
+
+
+
 
 
 

@@ -5,11 +5,6 @@ const questionsModel = require('./questions')
 
 
 function getOne(userId, gettingId) { 
-  console.log('get one model')
-  // return (
-  //   knex('users').leftJoin('tracks', 'users.id', 'tracks.user_id')
-  //   .where({'users.id': gettingId})
-  // )
   return (knex.raw(
     `SELECT users.id, username, deal, bio, img_url,
     deal, influences, heroes, genre_1, genre_2, genre_3, bio, instr_1, instr_2, instr_3, tracks.url, tracks.title, tracks.user_contr
@@ -70,7 +65,6 @@ function compAnswers(user1, user2, responseSoFar) {
       let match = (same/user1.length*100).toFixed(0)+`%`
       if (match === `NaN%`) match=`TBD%`
       responseSoFar.match = match
-      console.log('responseSoFar: ' + JSON.stringify(responseSoFar))
       return responseSoFar
   })
 }
@@ -126,7 +120,6 @@ function updateUser(id,
   instr_2, instr_3
 ) {
 
-  console.log(`updating user`) 
   return (
     knex('users').update({id, deal,
       deal,  genre_1, 

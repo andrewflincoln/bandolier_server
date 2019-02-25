@@ -31,7 +31,6 @@ function getPlaylist(userId) {
 
 
 function setRel(user_1, user_2, status) {
-  console.log('users: ' + user_1, user_2)
   return (
     knex('users_relations')
     .insert([{user1_id: user_1, user2_id: user_2, status: status}])
@@ -42,7 +41,6 @@ function setRel(user_1, user_2, status) {
 }
 
 function removeRel(user_1, user_2) {
-  console.log('users: ' + user_1, user_2)
   return (
     knex.raw(
       `DELETE FROM users_relations

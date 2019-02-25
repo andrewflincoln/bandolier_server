@@ -11,7 +11,6 @@ function getAllQuestions(req, res, next) {
 }
 
 function getNextQuestion(req, res, next) {
-  console.log('get next C')
   questionsModel.getNextQuestion(req.params.userId)
   .then(response => {
     if(!response) return next({status: 400, message: 'Could not get question.'})

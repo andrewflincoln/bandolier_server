@@ -20,7 +20,7 @@ app.use('/messages', require ('./routes/messages'))
 
 //Default Route
 app.use(function(req, res, next) {
-  next({status: 404, message: `Gnarly, route not found dude.`}) //change this
+  next({status: 404, message: `Route not found.`}) 
 })
 
 //Error Handler
@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
     errorMessage.stack = err.stack
   
   errorMessage.status = err.status || 500
-  errorMessage.message = err.message || `Server is broken lol` //change this
+  errorMessage.message = err.message || `Server error.` //change this
 
   res.status(errorMessage.status).send(errorMessage)
 

@@ -34,7 +34,6 @@ function compAnswers(user1, user2) {
       const array=response.rows
       let user1 = array.splice(0, array.length/2)
       let user2 = array
-      console.log(user1, user2)
       let same = 0
       for (let i = 0; i < user1.length; i++) {
         if (user1[i].answer===user2[i].answer) 
@@ -42,7 +41,6 @@ function compAnswers(user1, user2) {
         if (Math.abs(user1[i].answer - user2[i].answer) === 1)
           same+= 0.5 
       }
-      console.log(same)
       return (same/user1.length*100).toFixed(0)+`%`
   })
 }

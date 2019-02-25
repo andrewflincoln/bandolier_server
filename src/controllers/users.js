@@ -26,7 +26,6 @@ function getNext(req, res, next) {
   // console.log(req.body.recents)
   .then(response => {
     if(!response) return next({status: 400, message: 'Could not get user.'})
-    console.log('response ', response)
     res.send(response) ///may have to adjust here
   })
   .catch(next)
@@ -48,7 +47,6 @@ function createUser(req, res, next) {
 }
 
 function updateUser(req, res, next) {
-  console.log('update user')
   userModel.updateUser(req.body.id, req.body.deal, 
     req.body.genre_1, req.body.genre_2, req.body.genre_3, 
     req.body.bio, req.body.heroes, req.body.img_url, req.body.influences, 
@@ -61,7 +59,6 @@ function updateUser(req, res, next) {
 
 function searchUsers(req, res, next) {
   userModel.searchUsers(req.body.userId, req.body.genre_1, req.body.instr_1, req.body.heroes, req.body.influences)
-    // req.body.heroes, req.params.influences)
   .then(data => {
     return res.status(200).send(data)
   })

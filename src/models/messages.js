@@ -1,7 +1,5 @@
 const knex = require('../../db/index')
 
-
-
 function getMessages(user1, user2) {
   return knex.raw(
     `SELECT * FROM messages 
@@ -31,7 +29,6 @@ function postMessage (sender_id, receiver_id, body) {
   return knex('messages').insert({sender_id, receiver_id, body})
   .returning('*')
 }
-
 
 
 module.exports = {getMessages, postMessage, getConvos}

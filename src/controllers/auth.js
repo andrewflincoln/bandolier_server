@@ -2,7 +2,6 @@ const authModel = require('../models/auth')
 const jwt = require('jsonwebtoken')
 
 const login = (req, res, next) => {
-  console.log('login controller')
   if (!req.body.email || !req.body.password)
     return next({status: 400, message: 'Bad Request - 1'})
 
@@ -16,9 +15,7 @@ const login = (req, res, next) => {
 
 const authenticated = (req, res, next) => {
 
-  if (!req.headers.authorization) {
-   console.log('headers: ' + JSON.stringify(req.headers))
-   
+  if (!req.headers.authorization) { 
     return next({status: 401, message: 'Authentication Failed'})
   }
   const [bearer, token] = req.headers.authorization.split(' ')
