@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('tracks').insert([
-        {id: 1, user_id: 1, title: 'Turnstile Blues', artist_name: 'Autolux', user_contr: 'drums and vocals on this one. good sample of my styles on both i think', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/autolux_brainwasher.mp3`},
+        {id: 1, user_id: 1, title: 'Brainwasher', artist_name: 'Autolux', user_contr: 'drums and vocals on this one. good sample of my styles on both i think', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/autolux_brainwasher.mp3`},
         {id: 2, user_id: 2, title: 'Death Letter', artist_name: 'The White Stripes', user_contr: `it's a cover of some blues guy to whom we all owe all we have, really`, url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/white_stripes_deathletter.mp3`},
         {id: 3, user_id: 3, title: 'All The Time', artist_name: 'Vivian Girls', user_contr: 'I just made made this and then everyone liked it a lot I guess', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/vivian_girls_allthetime.mp3`},
         {id: 4, user_id: 4, title: 'Hurricane', artist_name: 'Kyuss', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/kyuss_hurricane.mp3`},
