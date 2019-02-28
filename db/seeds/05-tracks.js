@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         {id: 6, user_id: 6, title: 'Faith', artist_name: 'Ghost', user_contr: 'Ah yes, Faith. It is what you must have in me, your leader.', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/ghost_faith.mp3`},
         {id: 7, user_id: 7, title: 'Imagination Blind', artist_name: 'Dinosaur Jr.', user_contr: `J lets me write 2 songs per album. Gotta make em count!`, url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/dinosaurjr_imaginationblind.mp3`},
         // {id: 8, user_id: 8}, //leaving Gary's empty for test purposes
-        {id: 9, user_id: 9, title: 'On The Sly', artist_name: 'Metric', user_contr: 'see, needs something right? Think this will become my mysterious lost album', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/metric_onthesly.mp3`},
+        {id: 9, user_id: 9, title: 'Front Row', artist_name: 'Metric', user_contr: 'see, needs something right? Think this will become my mysterious lost album', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/metric_frontrow.mp3`},
         {id: 10, user_id: 10, title: 'Evil', artist_name: 'Savages', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/savages_evil.mp3`},
         {id: 11, user_id: 11, title: 'Oblivion', artist_name: 'Brant Bjork', user_contr: 'finally, my very own band! rocks pretty good, right? ', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/brant_bjork_oblivion.mp3`},
         {id: 12, user_id: 12, title: 'Porphyria Cutanea Tarda', artist_name: 'AFI', user_contr: 'man, we used to be so good!', url: `https://s3-us-west-2.amazonaws.com/bandolier-tracks/afi_porphyria.mp3`},
