@@ -99,6 +99,11 @@ exports.seed = function(knex, Promise) {
         {id: 65, user_id: 7, question_id: 5, answer:2},
         {id: 66, user_id: 7, question_id: 6, answer:4},
 
+        {id: 67, user_id: 8, question_id: 4, answer:2},
+        {id: 68, user_id: 8, question_id: 5, answer:1},
+        {id: 69, user_id: 8, question_id: 6, answer:3},
+
+
 
 
 
